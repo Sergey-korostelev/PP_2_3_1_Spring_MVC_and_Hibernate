@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>  Search for user by ID. </h2>
+<div>
+    <form th:method="POST" th:action="@{/changeUser}" th:object="${user}">
+        <label for="id">Enter user ID to change</label>
+        <input type="text" th:field="*{id}" id="id">
+        <br/>
+        <label for="name">Enter a new name for the user being edited</label>
+        <input type="text" th:field="*{name}" id="name">
+        <br/>
+        <label for="age">Enter a new age for the user being edited</label>
+        <input type="text" th:field="*{age}" id="age">
+        <br/>
+        <input type="submit" value="Change user">
+    </form>
+</div>
+</body>
+</html>
