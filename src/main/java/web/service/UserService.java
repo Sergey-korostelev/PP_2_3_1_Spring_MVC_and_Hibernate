@@ -8,5 +8,5 @@ public interface UserService {
     List<User> getListUser ();
     void addUser(User user);
     User mergeUser(User userId);
-    void deleteById(int id);
+    void removeUser(int id);
 }
