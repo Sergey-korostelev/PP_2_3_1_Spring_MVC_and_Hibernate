@@ -1,10 +1,10 @@
 package web.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import web.Dao.UserDao;
 import web.model.User;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getListUser() {
         return dao.getListUser();
     }
@@ -36,10 +36,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void removeUser(int id) {
-        for (User x : dao.getListUser()) {
-            if (x.getId()==id) {
-                dao.removeUser(id);
-            }
+        if (dao.getListUser().stream().anyMatch(x -> x.getId() == id)) {
+            dao.removeUser(id);
         }
     }
 }
