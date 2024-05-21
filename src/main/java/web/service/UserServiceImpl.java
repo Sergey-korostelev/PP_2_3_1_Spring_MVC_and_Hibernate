@@ -35,9 +35,5 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void removeUser(int id) {
-        if (dao.getListUser().stream().anyMatch(x -> x.getId() == id)) {
-            dao.removeUser(id);
-        }
-    }
+    public void deleteById(int id) { dao.deleteById(id); }
 }

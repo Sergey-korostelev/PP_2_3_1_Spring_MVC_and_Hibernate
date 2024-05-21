@@ -52,7 +52,7 @@ public class HelloController {
     }
     @PostMapping(value = "/removeUser")
     public String removeUser(@ModelAttribute("user") User user) {
-        service.removeUser(user.getId());
+        service.deleteById(user.getId());
         return "redirect:/";
     }
 }

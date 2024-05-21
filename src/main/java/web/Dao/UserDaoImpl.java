@@ -12,6 +12,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager em;
+
     @Override
     public List<User> getListUser() {
         final String hql = "select u from User u";
@@ -30,7 +31,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) {
-        em.remove(em.find(User.class,id));
+    public void deleteById(int id) {
+        if (em.find(User.class, id) != null) {
+            em.remove(em.find(User.class, id));
+        }
     }
 }
